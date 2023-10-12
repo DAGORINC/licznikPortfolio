@@ -56,8 +56,8 @@ app.get('/page-views', async (req, res) => {
 
 https.createServer(
     {    
-        key:fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/fullchain.pem', 'utf-8'),
-        cert: fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/privkey.pem', 'utf-8'),
+        key:fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/privkey.pem', 'utf-8'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/fullchain.pem', 'utf-8'),
     }
 ).listen(3001, () => {
     console.log(`server is running on http://localhost:${3001}`);
