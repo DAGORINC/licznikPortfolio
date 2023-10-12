@@ -5,7 +5,7 @@ const https = require('https');
 const fs = require('fs');
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 //fix cors
 app.use(cors());
@@ -54,20 +54,14 @@ app.get('/page-views', async (req, res) => {
     }
 });
 
-// ssl
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/fullchain.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/privkey.pem', 'utf8');
-const credentials = {
-    key: privateKey,
-    cert: certificate
-};
-
-//server
-const httpsServer = https.createServer(credentials, app);
-
-httpsServer.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
-});
+https.createServer(
+    {    
+        key:fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/fullchain.pem'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/privkey.pem'),
+    }
+).listen(3001, () => {
+    console.log(`server is running on http://localhost:${PORT}`);
+})
 
 // app.listen(port, () => {
 //     console.log(`Server is running on port ${port}`);
