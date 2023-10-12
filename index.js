@@ -11,7 +11,7 @@ const port = 3001;
 app.use(cors());
 
 // Połączenie z bazą danych MongoDB
-mongoose.connect('mongodb://localhost/page_views_db', {
+mongoose.connect('mongodb://127.0.0.1:27017/page_views_db', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
