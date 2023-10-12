@@ -54,16 +54,31 @@ app.get('/page-views', async (req, res) => {
     }
 });
 
-https.createServer(
-    {    
-        key:fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/privkey.pem', 'utf-8'),
-        cert: fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/fullchain.pem', 'utf-8'),
-    }
-).listen(3001, () => {
-    console.log(`server is running on http://localhost:${3001}`);
-})
+// ssl
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/privkey.pem', 'utf-8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/fullchain.pem', 'utf-8');
+const credentials = {
+    key: privateKey,
+    cert: certificate
+};
 
-// app.listen(port, () => {
-//     console.log(`Server is running on port ${port}`);
-// });
+//server
+const httpsServer = https.createServer(credentials, app);
+
+httpsServer.listen(port, () => {
+    console.log(`Serwer działa na porcie: ${port}`);
+});
+
+// https.createServer(
+//     {    
+//         key:fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/privkey.pem', 'utf-8'),
+//         cert: fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/fullchain.pem', 'utf-8'),
+//     }
+// ).listen(3001, () => {
+//     console.log(`server is running on http://localhost:${3001}`);
+// })
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
 
