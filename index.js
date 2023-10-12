@@ -55,19 +55,19 @@ app.get('/page-views', async (req, res) => {
 });
 
 // ssl
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/privkey.pem', 'utf-8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/fullchain.pem', 'utf-8');
-const credentials = {
-    key: privateKey,
-    cert: certificate
+// const privateKey = fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/privkey.pem', 'utf-8');
+// const certificate = fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/fullchain.pem', 'utf-8');
+// const credentials = {
+//     key: privateKey,
+//     cert: certificate
 };
 
 //server
-const httpsServer = https.createServer(credentials, app);
+// const httpsServer = https.createServer(credentials, app);
 
-httpsServer.listen(port, () => {
-    console.log(`Serwer działa na porcie: ${port}`);
-});
+// httpsServer.listen(port, () => {
+//     console.log(`Serwer działa na porcie: ${port}`);
+// });
 
 // https.createServer(
 //     {    
