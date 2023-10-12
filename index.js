@@ -60,7 +60,7 @@ app.get('/page-views', async (req, res) => {
 // const credentials = {
 //     key: privateKey,
 //     cert: certificate
-};
+// };
 
 //server
 // const httpsServer = https.createServer(credentials, app);
