@@ -55,7 +55,7 @@ app.get('/page-views', async (req, res) => {
 });
 
 // ssl
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/fullchain.pem;', 'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/fullchain.pem', 'utf8');
 const certificate = fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/privkey.pem', 'utf8');
 const credentials = {
     key: privateKey,
