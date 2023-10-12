@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const https = require('https');
 
 const app = express();
 const port = 3000;
@@ -52,6 +53,22 @@ app.get('/page-views', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+// ssl
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/fullchain.pem;', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/dgo.com.pl/privkey.pem', 'utf8');
+const credentials = {
+    key: privateKey,
+    cert: certificate
+};
+
+//server
+const httpsServer = https.createServer(credentials, app);
+
+httpsServer.listen(port, () => {
+    console.log(`Server is running on port: ${port}`);
 });
+
+// app.listen(port, () => {
+//     console.log(`Server is running on port ${port}`);
+// });
+
